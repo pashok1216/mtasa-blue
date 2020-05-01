@@ -179,12 +179,12 @@ CMainMenu::CMainMenu(CGUI* pManager)
     // Filepath, Relative position, absolute native size
     // And the font for the graphics is ?
     m_menuItems.push_back(CreateItem(MENU_ITEM_QUICK_CONNECT, "menu_quick_connect.png", CVector2D(0.168f, fBase + fGap * 0)));
-    m_menuItems.push_back(CreateItem(MENU_ITEM_BROWSE_SERVERS, "menu_browse_servers.png", CVector2D(0.168f, fBase + fGap * 1)));
-    m_menuItems.push_back(CreateItem(MENU_ITEM_HOST_GAME, "menu_host_game.png", CVector2D(0.168f, fBase + fGap * 2)));
-    m_menuItems.push_back(CreateItem(MENU_ITEM_MAP_EDITOR, "menu_map_editor.png", CVector2D(0.168f, fBase + fGap * 3)));
-    m_menuItems.push_back(CreateItem(MENU_ITEM_SETTINGS, "menu_settings.png", CVector2D(0.168f, fBase + fGap * 4)));
-    m_menuItems.push_back(CreateItem(MENU_ITEM_ABOUT, "menu_about.png", CVector2D(0.168f, fBase + fGap * 5)));
-    m_menuItems.push_back(CreateItem(MENU_ITEM_QUIT, "menu_quit.png", CVector2D(0.168f, fBase + fGap * 6)));
+    //m_menuItems.push_back(CreateItem(MENU_ITEM_BROWSE_SERVERS, "menu_browse_servers.png", CVector2D(0.168f, fBase + fGap * 1)));
+    //m_menuItems.push_back(CreateItem(MENU_ITEM_HOST_GAME, "menu_host_game.png", CVector2D(0.168f, fBase + fGap * 2)));
+   // m_menuItems.push_back(CreateItem(MENU_ITEM_MAP_EDITOR, "menu_map_editor.png", CVector2D(0.168f, fBase + fGap * 3)));
+    m_menuItems.push_back(CreateItem(MENU_ITEM_SETTINGS, "menu_settings.png", CVector2D(0.168f, fBase + fGap * 1)));
+    //m_menuItems.push_back(CreateItem(MENU_ITEM_ABOUT, "menu_about.png", CVector2D(0.168f, fBase + fGap * 5)));
+    m_menuItems.push_back(CreateItem(MENU_ITEM_QUIT, "menu_quit.png", CVector2D(0.168f, fBase + fGap * 2)));
 
     // We store the position of the top item, and the second item.  These will be useful later
     float fFirstItemSize = m_menuItems.front()->image->GetSize(false).fY;
@@ -265,13 +265,19 @@ CMainMenu::CMainMenu(CGUI* pManager)
 
         // Create 'NEW' sticker
         CGUILabel*& pLabel = m_pNewsItemNEWLabels[i];
-        pLabel = reinterpret_cast<CGUILabel*>(pManager->CreateLabel(m_pCanvas, "NEW"));
+        pLabel = reinterpret_cast<CGUILabel*>(pManager->CreateLabel(m_pCanvas, ""));
         pLabel->SetFont("default-small");
         pLabel->SetTextColor(255, 0, 0);
         pLabel->AutoSize(pLabel->GetText().c_str());
         pLabel->SetAlpha(0.7f);
         pLabel->SetVisible(false);
+        pItem->SetVisible(false);
+        pItemShadow->SetVisible(false);
+        pItemDate->SetVisible(false);
     }
+   
+
+    
 
     m_pLogo->MoveToBack();
 

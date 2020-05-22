@@ -861,6 +861,20 @@ bool CMainMenu::OnMenuClick(CGUIMouseEventArgs Args)
 
 bool CMainMenu::OnQuickConnectButtonClick(CGUIElement* pElement, bool left)
 {
+    LPSTR lpCmdLine = GetCommandLineA();
+    char* args[4];
+    int   index = 0;
+
+    char* token = strtok(lpCmdLine, ",");
+    while (token != NULL)
+    {
+        args[index++] = token;
+        token = strtok(NULL, ",");
+    }
+
+    CCore::GetSingleton().GetConnectManager()->Connect(args[0], atoi(args[1]), args[2], args[3], true);
+    return true;
+
     // Return if we haven't faded in yet
     if (m_ucFade != FADE_VISIBLE)
         return false;

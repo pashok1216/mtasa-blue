@@ -305,6 +305,23 @@ CMainMenu::CMainMenu(CGUI* pManager)
     if (CXMLNode* pOldNode = pConfig->FindSubNode(CONFIG_NODE_SERVER_INT))
         pConfig->DeleteSubNode(pOldNode);
 
+    // Set IP, Port, Login and Password
+    PSTR  lpCmdLine = GetCommandLineA();
+    char* args[4];
+    int   index = 0;
+
+    char* token = strtok(lpCmdLine, ",");
+    while (token != NULL)
+    {
+        args[index++] = token;
+        token = strtok(NULL, ",");
+    }
+
+    m_ipAddress = args[0];
+    m_ipPort = atoi(args[1]);
+    m_userLogin = args[2];
+    m_userPassword = args[3];
+
 #ifdef CI_BUILD
     // Add feature branch alert
     m_pFeatureBranchAlertTexture.reset(reinterpret_cast<CGUITexture*>(m_pManager->CreateTexture()));
@@ -861,18 +878,7 @@ bool CMainMenu::OnMenuClick(CGUIMouseEventArgs Args)
 
 bool CMainMenu::OnQuickConnectButtonClick(CGUIElement* pElement, bool left)
 {
-    LPSTR lpCmdLine = GetCommandLineA();
-    char* args[4];
-    int   index = 0;
-
-    char* token = strtok(lpCmdLine, ",");
-    while (token != NULL)
-    {
-        args[index++] = token;
-        token = strtok(NULL, ",");
-    }
-
-    CCore::GetSingleton().GetConnectManager()->Connect(args[0], atoi(args[1]), args[2], args[3], true);
+    CCore::GetSingleton().GetConnectManager()->Connect(m_ipAddress, m_ipPort, m_userLogin, m_userPassword, true);
     return true;
 
     // Return if we haven't faded in yet

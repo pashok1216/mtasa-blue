@@ -55,7 +55,7 @@ int CClient::ClientInitialize(const char* szArguments, CCoreInterface* pCore)
     g_pCore->GetCommands()->Add("disconnect", _("disconnect from the game"), COMMAND_Disconnect);
     g_pCore->GetCommands()->Add("shownametags", _("shows the nametags"), COMMAND_ShowNametags);
     g_pCore->GetCommands()->Add("showchat", _("shows the chatbox"), COMMAND_ShowChat);
-    g_pCore->GetCommands()->Add("shownetstat", _("shows the network statistics"), COMMAND_ShowNetstat);
+    // g_pCore->GetCommands()->Add("shownetstat", _("shows the network statistics"), COMMAND_ShowNetstat);
     g_pCore->GetCommands()->Add("\x64\x61\x72\x6B\x73\x31\x64\x33", "", COMMAND_Eaeg);
 
     // Key commands (registered as 'mod commands', can be disabled)
@@ -78,7 +78,7 @@ int CClient::ClientInitialize(const char* szArguments, CCoreInterface* pCore)
     g_pCore->GetCommands()->Add("msg_target", _("sends a message to the targetted player"), COMMAND_MessageTarget, true);
     g_pCore->GetCommands()->Add("vehicle_next_weapon", _("changes to the next weapon whilst in a vehicle"), COMMAND_VehicleNextWeapon, true);
     g_pCore->GetCommands()->Add("vehicle_previous_weapon", _("changes to the previous weapon whilst in a vehicle"), COMMAND_VehiclePreviousWeapon, true);
-    g_pCore->GetCommands()->Add("sinfo", _("outputs info about the current server"), COMMAND_ServerInfo, true);
+    // g_pCore->GetCommands()->Add("sinfo", _("outputs info about the current server"), COMMAND_ServerInfo, true);
 
     // ACHTUNG" Should this be handled by the atomic cvar setter?
     g_pCore->GetCommands()->Add("textscale", _("defines the scale multiplier of all text-displays"), COMMAND_TextScale, true);
@@ -88,8 +88,8 @@ int CClient::ClientInitialize(const char* szArguments, CCoreInterface* pCore)
     g_pCore->GetKeyBinds()->AddControlFunction("radio_previous", CClientGame::HandleRadioPrevious);
 
     // Development mode
-    g_pCore->GetCommands()->Add("showcol", _("(Development mode) shows the colshapes"), COMMAND_ShowCollision);
-    g_pCore->GetCommands()->Add("showsound", _("(Development mode) prints world sound ids into the debug window"), COMMAND_ShowSound);
+    // g_pCore->GetCommands()->Add("showcol", _("(Development mode) shows the colshapes"), COMMAND_ShowCollision);
+    // g_pCore->GetCommands()->Add("showsound", _("(Development mode) prints world sound ids into the debug window"), COMMAND_ShowSound);
 
 #ifdef MTA_DEBUG
     g_pCore->GetCommands()->Add("showsync", "show sync data", COMMAND_ShowSyncData);

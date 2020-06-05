@@ -1290,7 +1290,7 @@ void CCore::RegisterCommands()
     m_pCommands->Add("help", _("this help screen"), CCommandFuncs::Help);
     m_pCommands->Add("exit", _("exits the application"), CCommandFuncs::Exit);
     m_pCommands->Add("quit", _("exits the application"), CCommandFuncs::Exit);
-    m_pCommands->Add("ver", _("shows the version"), CCommandFuncs::Ver);
+    // m_pCommands->Add("ver", _("shows the version"), CCommandFuncs::Ver);
     m_pCommands->Add("time", _("shows the time"), CCommandFuncs::Time);
     m_pCommands->Add("showhud", _("shows the hud"), CCommandFuncs::HUD);
     m_pCommands->Add("binds", _("shows all the binds"), CCommandFuncs::Binds);
@@ -1303,8 +1303,8 @@ void CCore::RegisterCommands()
     m_pCommands->Add ( "unload",            "unloads a mod (name)",             CCommandFuncs::Unload );
 #endif
 
-    m_pCommands->Add("connect", _("connects to a server (host port nick pass)"), CCommandFuncs::Connect);
-    m_pCommands->Add("reconnect", _("connects to a previous server"), CCommandFuncs::Reconnect);
+    // m_pCommands->Add("connect", _("connects to a server (host port nick pass)"), CCommandFuncs::Connect);
+    // m_pCommands->Add("reconnect", _("connects to a previous server"), CCommandFuncs::Reconnect);
     m_pCommands->Add("bind", _("binds a key (key control)"), CCommandFuncs::Bind);
     m_pCommands->Add("unbind", _("unbinds a key (key)"), CCommandFuncs::Unbind);
     m_pCommands->Add("copygtacontrols", _("copies the default gta controls"), CCommandFuncs::CopyGTAControls);
@@ -1318,12 +1318,13 @@ void CCore::RegisterCommands()
     m_pCommands->Add("debugscrolldown", _("scrolls the debug view downwards"), CCommandFuncs::DebugScrollDown);
 
     m_pCommands->Add("test", "", CCommandFuncs::Test);
-    m_pCommands->Add("showmemstat", _("shows the memory statistics"), CCommandFuncs::ShowMemStat);
-    m_pCommands->Add("showframegraph", _("shows the frame timing graph"), CCommandFuncs::ShowFrameGraph);
-    m_pCommands->Add("jinglebells", "", CCommandFuncs::JingleBells);
-    m_pCommands->Add("fakelag", "", CCommandFuncs::FakeLag);
+    m_pCommands->Add("test", "", CCommandFuncs::Test);
+    // m_pCommands->Add("showmemstat", _("shows the memory statistics"), CCommandFuncs::ShowMemStat);
+    // m_pCommands->Add("showframegraph", _("shows the frame timing graph"), CCommandFuncs::ShowFrameGraph);
+    // m_pCommands->Add("jinglebells", "", CCommandFuncs::JingleBells);
+    // m_pCommands->Add("fakelag", "", CCommandFuncs::FakeLag);
     
-    m_pCommands->Add("reloadnews", "for developers: reload news", CCommandFuncs::ReloadNews);
+    // m_pCommands->Add("reloadnews", "for developers: reload news", CCommandFuncs::ReloadNews);
 }
 
 void CCore::SwitchRenderWindow(HWND hWnd, HWND hWndInput)

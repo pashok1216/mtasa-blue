@@ -98,7 +98,8 @@ CMainMenu::CMainMenu(CGUI* pManager)
 
         float iRatioSizeX = ScreenSize.fX / NATIVE_RES_X;
         iBackgroundSizeX = ScreenSize.fX;
-        iBackgroundSizeY = NATIVE_BG_Y * iRatioSizeX;
+        iBackgroundSizeY = ScreenSize.fY;
+        // iBackgroundSizeY = NATIVE_BG_Y * iRatioSizeX;
     }
     else            // Otherwise our monitor is in a portrait resolution, so we cant fill the background by y
     {
@@ -110,7 +111,8 @@ CMainMenu::CMainMenu(CGUI* pManager)
 
         iBackgroundY = m_iYOff;
         iBackgroundSizeX = m_iMenuSizeX;
-        iBackgroundSizeY = NATIVE_BG_Y * iRatioSizeX;
+        iBackgroundSizeY = ScreenSize.fY;
+        // iBackgroundSizeY = NATIVE_BG_Y * iRatioSizeX;
     }
     // First create our filler black background image, which covers the whole screen
     m_pFiller = reinterpret_cast<CGUIStaticImage*>(pManager->CreateStaticImage());

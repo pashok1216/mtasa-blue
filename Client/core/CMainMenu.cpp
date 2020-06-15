@@ -309,7 +309,7 @@ CMainMenu::CMainMenu(CGUI* pManager)
 
     // Set IP, Port, Login and Password
     PSTR  lpCmdLine = GetCommandLineA();
-    char* args[4];
+    char* args[2];
     int   index = 0;
 
     char* token = strtok(lpCmdLine, ",");
@@ -321,8 +321,8 @@ CMainMenu::CMainMenu(CGUI* pManager)
 
     m_ipAddress = args[0];
     m_ipPort = atoi(args[1]);
-    m_userLogin = args[2];
-    m_userPassword = args[3];
+    m_userLogin = "";
+    m_userPassword = "";
 
 #ifdef CI_BUILD
     // Add feature branch alert
@@ -880,7 +880,10 @@ bool CMainMenu::OnMenuClick(CGUIMouseEventArgs Args)
 
 bool CMainMenu::OnQuickConnectButtonClick(CGUIElement* pElement, bool left)
 {
-    CCore::GetSingleton().GetConnectManager()->Connect(m_ipAddress, m_ipPort, m_userLogin, m_userPassword, true);
+    std::string strVar;
+    CVARS_GET("nick", strVar);
+
+    CCore::GetSingleton().GetConnectManager()->Connect(m_ipAddress, m_ipPort, strVar.c_str(), m_userPassword, true);
     return true;
 
     // Return if we haven't faded in yet

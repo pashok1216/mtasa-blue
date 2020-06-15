@@ -125,8 +125,8 @@ private:
 
     char* m_ipAddress;
     int   m_ipPort;
-    char* m_userLogin;
-    char* m_userPassword;
+    const char* m_userLogin;
+    const char* m_userPassword;
 
     // Properties
     bool m_bIsIngame;

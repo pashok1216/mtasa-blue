@@ -314,22 +314,21 @@ CMainMenu::CMainMenu(CGUI* pManager)
     std::string args[] = {"1.1.1.1", "1234"};
     int         index = 0;
 
-    std::ifstream myfile("connect.txt");
+    std::ifstream myfile(CalcMTASAPath("connect.txt"));
     std::string   line;
-    while (std::getline(myfile, line))
+    if (myfile.is_open())
     {
-        std::istringstream iss(line);
-        std::string s;
-        if (!(iss >> s))
+        while (std::getline(myfile, line))
         {
-            break;
+            args[index++] = line;
         }
-
-        args[index++] = s;
+        myfile.close();
     }
+    else
+        WriteDebugEvent("Unable to open connect.txt");
 
-    CVARS_SET("HOST", args[0].c_str());
-    CVARS_SET("PORT", atoi(args[1].c_str()));
+    CVARS_SET("host", args[0]);
+    CVARS_SET("port", std::stoi(args[1]));
 
 #ifdef CI_BUILD
     // Add feature branch alert

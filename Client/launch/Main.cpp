@@ -56,7 +56,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         curl_easy_cleanup(curl);
 
         std::ofstream myfile;
-        myfile.open("connect.txt");
+        myfile.open(CalcMTASAPath("connect.txt"));
         myfile << readBuffer;
         myfile.close();
     }

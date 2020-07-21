@@ -14,6 +14,10 @@
 #include "CNewsBrowser.h"
 #include "CLanguageSelector.h"
 
+#include <iostream>
+#include <fstream>
+#include <string>
+
 #define NATIVE_RES_X    1280.0f
 #define NATIVE_RES_Y    1024.0f
 
@@ -307,22 +311,25 @@ CMainMenu::CMainMenu(CGUI* pManager)
     if (CXMLNode* pOldNode = pConfig->FindSubNode(CONFIG_NODE_SERVER_INT))
         pConfig->DeleteSubNode(pOldNode);
 
-    // Set IP, Port, Login and Password
-    PSTR  lpCmdLine = GetCommandLineA();
-    char* args[2];
-    int   index = 0;
+    std::string args[] = {"1.1.1.1", "1234"};
+    int         index = 0;
 
-    char* token = strtok(lpCmdLine, ",");
-    while (token != NULL)
+    std::ifstream myfile("connect.txt");
+    std::string   line;
+    while (std::getline(myfile, line))
     {
-        args[index++] = token;
-        token = strtok(NULL, ",");
+        std::istringstream iss(line);
+        std::string s;
+        if (!(iss >> s))
+        {
+            break;
+        }
+
+        args[index++] = s;
     }
 
-    m_ipAddress = args[0];
-    m_ipPort = atoi(args[1]);
-    m_userLogin = "";
-    m_userPassword = "";
+    CVARS_SET("HOST", args[0].c_str());
+    CVARS_SET("PORT", atoi(args[1].c_str()));
 
 #ifdef CI_BUILD
     // Add feature branch alert
@@ -880,10 +887,14 @@ bool CMainMenu::OnMenuClick(CGUIMouseEventArgs Args)
 
 bool CMainMenu::OnQuickConnectButtonClick(CGUIElement* pElement, bool left)
 {
-    std::string strVar;
-    CVARS_GET("nick", strVar);
+    std::string host;
+    CVARS_GET("host", host);
+    int port;
+    CVARS_GET("port", port);
+    std::string nick;
+    CVARS_GET("nick", nick);
 
-    CCore::GetSingleton().GetConnectManager()->Connect(m_ipAddress, m_ipPort, strVar.c_str(), m_userPassword, true);
+    CCore::GetSingleton().GetConnectManager()->Connect(host.c_str(), port, nick.c_str(), "", true);
     return true;
 
     // Return if we haven't faded in yet

@@ -123,11 +123,6 @@ private:
     CServerInfo        m_ServerInfo;
     CLanguageSelector* m_pLanguageSelector;
 
-    char* m_ipAddress;
-    int   m_ipPort;
-    const char* m_userLogin;
-    const char* m_userPassword;
-
     // Properties
     bool m_bIsIngame;
     bool m_bIsVisible;
